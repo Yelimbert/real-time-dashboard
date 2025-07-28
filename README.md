@@ -1,36 +1,49 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Real-Time Alert and Chat Dashboard
 
-## Getting Started
+A real-time dashboard that displays alerts and supports WebSocket-based chat. This project uses Next.js with a modular structure and mock WebSocket servers for both alert and chat streams.
 
-First, run the development server:
+# Setup Instructions
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## 1. Clone the repository
+`git clone`
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+`cd project-name`
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 2. Install dependencies
+`npm install`
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 3. Run the development environment
+`npm run dev`
 
-## Learn More
+# Project Architecture
 
-To learn more about Next.js, take a look at the following resources:
+The application is built using Next.js (App Router) and follows a modular structure. It consists of:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+* A map and alert feed page located in app/alert-feed/, which renders real-time alerts received through a WebSocket connection (useWebSocketAlerts).
+* A chat panel, accessible globally, which uses useWebSocketChat to communicate with a separate mock WebSocket server for real-time messaging.
+* Shared components like Map, AlertMarker, ChatPanel, and ThemeToggle are stored under components/, promoting reusability and separation of concerns.
+* Global styles and light/dark theme handling are managed through globals.css and the ThemeWrapper component.
+* Two local WebSocket servers (mock-server.js and chat-server.js) simulate real-time data for alerts and chat.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+# Assumptions and Limitations
 
-## Deploy on Vercel
+* Assumes Node.js and npm are installed on the system.
+* Mock servers are designed for local development only.
+* No database or backend persistence.
+* Map markers and coordinates are hardcoded for demo purposes.
+* Basic theme toggle included, no advanced accessibility support yet.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+# How to Run with Local Mock WebSocket Servers
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+No additional configuration is required.
+
+#### Just run:
+`npm run dev`
+
+This will concurrently launch:
+
+* mock-server.js on port 8080 (alerts)
+* chat-server.js on port 8081 (chat)
+* The Next.js frontend on port 3000 (by default)
+
+Make sure ports 8080, 8081, and 3000 are free.
