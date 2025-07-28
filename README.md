@@ -42,10 +42,8 @@ No additional configuration is required.
 
 This will concurrently launch:
 
-mock-server.js on port 8080 (alerts)
-
-chat-server.js on port 8081 (chat)
-
-The Next.js frontend on port 3000 (by default)
+* mock-server.js on port 8080 (alerts)
+* chat-server.js on port 8081 (chat)
+* The Next.js frontend on port 3000 (by default)
 
 Make sure ports 8080, 8081, and 3000 are free.
